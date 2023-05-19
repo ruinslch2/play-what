@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/play-what/static/css/main.3f4cea7f.css",
+    "main.js": "/play-what/static/js/main.1ed4cb6b.js",
+    "static/js/787.d8e4d9a8.chunk.js": "/play-what/static/js/787.d8e4d9a8.chunk.js",
+    "index.html": "/play-what/index.html",
+    "main.3f4cea7f.css.map": "/play-what/static/css/main.3f4cea7f.css.map",
+    "main.1ed4cb6b.js.map": "/play-what/static/js/main.1ed4cb6b.js.map",
+    "787.d8e4d9a8.chunk.js.map": "/play-what/static/js/787.d8e4d9a8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f4cea7f.css",
+    "static/js/main.1ed4cb6b.js"
+  ]
+}
