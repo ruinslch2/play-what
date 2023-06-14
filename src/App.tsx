@@ -3,6 +3,7 @@ import './App.css';
 import { Ladder } from './components/ladder';
 import { FlipCard } from './components/jobPick/flipCard';
 import { SelectCard } from './components/jobPick/SelectCard';
+import Player from './components/player/player';
 
 const player = 8;
 const layer = 5;
@@ -93,9 +94,14 @@ function App() {
   console.log('playerPos: ', playerPos)
   return (
     <div className='h-screen w-screen relative flex flex-col justify-center items-center'>
+      <Player />
+    </div>
+  )
+  return (
+    <div className='h-screen w-screen relative flex flex-col justify-center items-center'>
       <div className='w-[1024px] relative'>
         <div id='player'
-             className='rounded-full bg-red-500 w-10 h-10 absolute left-[20px] top-[-20px] ease-out duration-300 z-10' />
+             className='rounded-full bg-red-500 w-10 h-10 absolute left-[20px] top-[-20px] duration-1000 z-10' />
         <Ladder playerPos={playerPos} connectRoad={ladderProps} size={player} layer={layer} />
         <div className='flex'>
           {playerSize.map((player, index) =>

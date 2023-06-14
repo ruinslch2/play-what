@@ -42,7 +42,7 @@ const Road = ({ left }: roadType) => {
       {/* top bottom line */}
       <div
         className={`w-full h-100 after:absolute after:border-blue-500 after:border after:left-[50%] after:h-[100%]`}></div>
-      {/* left right line */}
+      {/* left line */}
       <div
         className={`w-full h-100 ${left ? 'before:absolute before:border before:border-blue-500 before:w-[100%] before:left-[-50%] before:top-[50%]' : ''}`} />
     </div>
