@@ -7,6 +7,8 @@ const initialState = {
             x: 0,
             y: 0
         },
+        direction: 0,
+        frameIndex: 0,
         img: 'https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png'
     }],
 };
@@ -15,6 +17,8 @@ export interface PlayerPosParam {
     name: string,
     x: number,
     y: number,
+    direction: number,
+    frameIndex: number,
 }
 
 export const playerSlice = createSlice({
@@ -28,6 +32,8 @@ export const playerSlice = createSlice({
                     x: 0,
                     y: 0,
                 },
+                direction: 0,
+                frameIndex: 0,
                 img: 'https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png'
             })
         },
@@ -39,6 +45,8 @@ export const playerSlice = createSlice({
                         x: data.x,
                         y: data.y
                     }
+                    player.direction = data.direction;
+                    player.frameIndex = data.frameIndex;
                 }
             })
         }

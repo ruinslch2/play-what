@@ -13,15 +13,6 @@ interface MoveAction {
     [key: string]: boolean
 }
 
-interface PlayerListType {
-    name: string,
-    position: {
-        x: number,
-        y: number
-    },
-    img: string
-};
-
 export const useShallowEqualSelector: TypedUseSelectorHook<RootState> = (
     selector
 ) => {
@@ -30,6 +21,13 @@ export const useShallowEqualSelector: TypedUseSelectorHook<RootState> = (
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
+const Direction = {
+    FACE_DOWN: 0,
+    FACE_UP: 1,
+    FACE_LEFT: 2,
+    FACE_RIGHT: 3
+}
+const CYCLE_LOOP = [0, 1, 0, 2];
 const Canvas = (props: any) => {
     const dispatch = useAppDispatch();
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -55,18 +53,43 @@ const Canvas = (props: any) => {
             let positionY = 0;
             positionX = player.position.x
             positionY = player.position.y
+            let direction = player.direction;
+            let hasMoved = false;
+            let frameIndex = player.frameIndex;
             if (keyPresses.w) {
                 positionY -= MOVEMENT_SPEED;
+                direction = Direction.FACE_UP;
+                hasMoved = true;
             } else if (keyPresses.s) {
                 positionY += MOVEMENT_SPEED;
+                direction = Direction.FACE_DOWN;
+                hasMoved = true;
             }
             if (keyPresses.a) {
                 positionX -= MOVEMENT_SPEED;
+                direction = Direction.FACE_LEFT
+                hasMoved = true;
             } else if (keyPresses.d) {
                 positionX += MOVEMENT_SPEED;
+                direction = Direction.FACE_RIGHT
+                hasMoved = true;
             }
-            dispatch(playerAction.setPlayerPos({x: positionX, y: positionY, name: 'test1'}));
-            drawFrame(0, 0, positionX, positionY, player.img, ctx);
+            if (hasMoved) {
+                frameIndex++;
+                if (frameIndex >= 64) {
+                    frameIndex = 0;
+                }
+            } else {
+                frameIndex = 0
+            }
+            dispatch(playerAction.setPlayerPos({
+                x: positionX,
+                y: positionY,
+                name: 'test1',
+                direction: direction,
+                frameIndex: frameIndex
+            }));
+            drawFrame(CYCLE_LOOP[Math.floor(frameIndex / 16)], player.direction, positionX, positionY, player.img, ctx);
         })
 
         window.requestAnimationFrame(() => gameLoop(ctx, canvas));
@@ -93,6 +116,7 @@ const Canvas = (props: any) => {
         }
 
         window.addEventListener('keydown', keyDownListener);
+
         function keyDownListener(event: KeyboardEvent) {
             keyPresses[event.key] = true;
         }
