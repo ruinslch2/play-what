@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://ruinslch2.github.io/play-what",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -15,7 +16,9 @@
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.1.3",
     "react-scripts": "5.0.1",
+    "reconnecting-websocket": "^4.4.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
